@@ -144,13 +144,16 @@ jobs:
 
       - name: freetype and docking (non-Windows, pkg-config)
         if: matrix.os != 'windows-latest'
-        run: cargo test --workspace --all-targets --features freetype,docking
+        run: cargo test --workspace --all-targets --features docking,freetype
+
+      - name: doc tests
+        run: cargo test --workspace --doc
 
       - name: freetype feature (Windows, vcpkg)
         if: matrix.os == 'windows-latest'
         run: cargo test --workspace --all-targets --features freetype,use-vcpkg
 
-      - name: freetype and docking (Windows, vcpkg)
+      - name: all features (Windows, vcpkg)
         if: matrix.os == 'windows-latest'
         run: cargo test --workspace --all-targets --features freetype,docking,use-vcpkg
 
